@@ -1,0 +1,21 @@
+<div class="container-fluid p-5 bg-primary text-white text-center">
+    <h1>Criar tarefa</h1>
+</div>
+
+<%= form_with model: Task.new do |form|%>
+    <%=form.label :title, 'Titulo'%>
+    <%=form.text_field :title%>
+
+    <%= form.label :body, 'Observações'%>
+    <%= form.text_field :body%>
+
+    <%= form.label :date, 'Prazo' %>
+    <%= form.date_field :date %>
+
+    <%= form.label :alert, 'Alerta' %>
+    <%= form.date_field :alert %>
+
+    <%= form.select :status, ["Em andamento", "Concluido", "Atrasado"] %>
+
+    <%= form.submit 'Adicionar'%>
+<%end%>

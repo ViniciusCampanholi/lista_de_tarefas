@@ -1,0 +1,37 @@
+<div class="container-fluid p-5 bg-primary text-white text-center">
+    <h1>Lista de tarefas</h1>
+</div>
+<div class="container p-5 my-5 border">
+    <div class="d-grid">
+        <%=link_to 'Adicionar uma nova tarefa', new_task_path(@task), :class => "btn btn-success btn-block"%>
+    </div>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Tarefa</th>
+                <th>Observação</th>
+                <th>Prazo</th>
+                <th>Alerta</th>
+                <th>Status</th>
+                <th>Ação</th>
+                <th>Ação</th>
+            </tr>
+        </thead>
+            <% @tasks.each do |task| %>
+                <tbody>
+                    <td><%= task.id %></td>
+                    <td><%= task.title %></td>
+                    <td><%= task.body %></td>
+                    <td><%= task.date %></td>
+                    <td><%= task.alert %></td>
+                    <td><%= task.status %></td>
+                    <td>
+                        <%= link_to 'Editar', edit_task_path(task), :class => "btn btn-success"%></td>
+                    <td>
+                        <%= link_to 'Deletar', task_path(task), :class => "btn btn-danger", data: {turbo_method: :delete, turbo_confirm: "Tem certeza?"}%>
+                    </td>
+                </tbody>
+            <%end%>
+    </table>
+</div>
