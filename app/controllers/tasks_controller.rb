@@ -12,7 +12,7 @@ class TasksController < ApplicationController
   end
 
   def create
-    @task = Task.new(params.require(:task).permit(:title, :body, :status, :date, :alert))
+    @task = Task.new(task_params)
     @task.save
     redirect_to root_path
   end
@@ -22,8 +22,11 @@ class TasksController < ApplicationController
   end
   
   def update
+    # binding.pry 
     @task = Task.find(params[:id])
-    @task = Task.update(params.require(:task).permit(:title, :body, :status, :date, :alert))
+    
+    puts task_params
+    @task.update(task_params)
     redirect_to root_path
   end
 
@@ -31,5 +34,10 @@ class TasksController < ApplicationController
     @task = Task.find(params[:id])
     @task.destroy
     redirect_to root_path
+  end
+  
+  private
+  def task_params
+    params.require(:task).permit(:title, :body, :status, :date, :alert)
   end
 end
